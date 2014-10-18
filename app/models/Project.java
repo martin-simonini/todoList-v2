@@ -3,6 +3,7 @@ package models;
 import javax.persistence.*;
 import play.db.ebean.*;
 import com.avaje.ebean.*;
+import java.util.*;
 
 @Entity
 public class Project extends Model {
@@ -11,6 +12,8 @@ public class Project extends Model {
 	public String name;
 	@ManyToOne
 	public User user;
+	@ManyToMany(cascade = CascadeType.REMOVE)
+	public List<User> members = new ArrayList<User>();
 	
 	public Project(String name, User owner){
 		this.name = name;
